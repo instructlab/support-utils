@@ -35,9 +35,20 @@ pip install -r requirements.txt
 ```
 
 ## 🚀 Usage
-### Check a Single PDF or an Entire Folder of PDFs
+### Supports PDF and JSON
+Illuminator works with:
+- Raw PDF files (will convert using Docling)
+- Docling-generated JSON files (post-conversion documents)
+
+### Analyse a Single File
 ```
-python illuminator.py -f /path/to/pdf/document.pdf
+python illuminator.py -f /path/to/document.pdf
+python illuminator.py -f /path/to/document.json
+```
+
+### Analyze All Files in a Folder
+```
+python illuminator.py -f /path/to/folder/
 ```
 
 ### Save Results to a JSON File
