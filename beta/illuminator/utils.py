@@ -7,23 +7,24 @@ from log_utils import logger
 
 MAX_PREVIEW_LENGTH = 30  # Max characters shown from cell text in summary
 
-def get_pdf_files(path: str) -> List[str]:
+def get_supported_files(path: str, extensions: List[str] = [".pdf", ".json"]) -> List[str]:
     """
-    Returns a list of PDF file paths from a given file or directory.
+    Returns a list of supported file paths (.pdf or .json) from a file or directory.
 
     Args:
-        path: Path to a single .pdf file or directory containing .pdf files.
+        path: Path to a single file or directory.
+        extensions: List of file extensions to include.
 
     Returns:
-        List of .pdf file paths.
+        List of matching file paths.
     """
-    if os.path.isfile(path) and path.endswith(".pdf"):
+    if os.path.isfile(path) and any(path.endswith(ext) for ext in extensions):
         return [path]
     elif os.path.isdir(path):
         return [
             os.path.join(path, f)
             for f in os.listdir(path)
-            if f.endswith(".pdf")
+            if any(f.endswith(ext) for ext in extensions)
         ]
     return []
 
